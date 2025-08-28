@@ -258,14 +258,16 @@ projects.forEach(project => {
   `;
 });
 
-  const container = document.getElementById('social-icons');
+const socials_containers = document.querySelectorAll('.social-icons');
 
-  socialMedia.forEach(platform => {
-    const a = document.createElement('a');
-    a.href = platform.url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.innerHTML = platform.svg;
-    container.appendChild(a);
-  });
-
+   socials_containers.forEach(container => {
+        socialMedia.forEach(platform => {
+          const a = document.createElement('a');
+          a.href = platform.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = platform.svg;
+          a.className = "rounded-xl border-2 border-black p-2 hover:bg-gray-200";
+          container.appendChild(a);
+        });
+   });
