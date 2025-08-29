@@ -34,7 +34,7 @@ const certificates = [
   { title: "The AI Revolution in Education: Opportunities and challenges", date: "April 28, 2025" },
   { title: "40-Hour Basic Occupational Safety and Health (Bosh) Training", date: "February 18-21, 2025" },
   { title: "Ethical Hacking – JPCS ITalks", date: "October 12, 2024" },
-{ title: "Resource Speaker: Capacity Building on Basic Programming<br> and Arduino Uno R3", date: "March 09, 2023" },
+{ title: "Resource Speaker: Capacity Building on Basic Programming and Arduino Uno R3", date: "March 09, 2023" },
 //  { title: "Software Development Lifecycle Fundamentals – Great Learning", date: "2024" },
 //  { title: "OOPs In Python – Great Learning", date: "2023" },
 //  { title: "Python Fundamentals for Beginners – Great Learning", date: "2023" },
@@ -97,10 +97,10 @@ const awards = [
 ];
 
 const skills = [
+  { name: "Arduino", icon: "src/technologies_logo/arduino_logo.png" },
   { name: "HTML", icon: "src/technologies_logo/html_logo.png" },
   { name: "CSS", icon: "src/technologies_logo/css_logo.png" },
   { name: "JavaScript", icon: "src/technologies_logo/js_logo.png" },
-  { name: "Arduino", icon: "src/technologies_logo/arduino_logo.png" },
   { name: "Tailwind CSS", icon: "src/technologies_logo/tailwind_logo.png" },
   { name: "C++", icon: "src/technologies_logo/c++_logo.png" },
   { name: "Python", icon: "src/technologies_logo/python_logo.png" },
@@ -271,3 +271,35 @@ const socials_containers = document.querySelectorAll('.social-icons');
           container.appendChild(a);
         });
    });
+
+
+//navigation
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  const scrollPos = window.scrollY;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 60;
+    const sectionHeight = section.offsetHeight;
+
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  // Force last section active when scrolled to bottom
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+    current = sections[sections.length - 1].getAttribute("id");
+  }
+
+  navLinks.forEach(link => {
+    link.classList.remove("text-blue-500", "font-bold");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add( "font-bold");
+    }
+  });
+});
+
